@@ -3,8 +3,8 @@ name: Refresh dashboard data
 
 on:
   schedule:
-    # Run daily at 16:30 US Eastern (20:30 UTC = 16:30 EDT; 21:30 in EST)
-    - cron: '30 20 * * *'
+    # Run Mon–Fri at 16:30 US Eastern (20:30 UTC); skip weekends
+    - cron: '30 20 * * 1-5'
   workflow_dispatch: # Allow manual run
 
 jobs:
