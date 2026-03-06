@@ -44,3 +44,6 @@ market-dashboard/
 ```
 
 Data: Yahoo Finance (yfinance), economic calendar (investpy). Charts: TradingView embed.
+
+## Stargazers over time
+[![Stargazers over time](https://starchart.cc/traderwillhu/market_dashboard.svg?variant=adaptive)](https://starchart.cc/traderwillhu/market_dashboard)
