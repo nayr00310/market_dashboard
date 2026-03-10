@@ -16,7 +16,7 @@ import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from io import BytesIO
 from scipy.stats import rankdata
 
@@ -167,6 +167,8 @@ def get_upcoming_key_events(days_ahead=7):
         if filtered.empty:
             return []
         filtered = filtered.sort_values(['date', 'time'])
+        # Ensure date is formatted as MM/DD/YYYY for macro events output
+        filtered['date'] = pd.to_datetime(filtered['date'], dayfirst=True, errors='coerce').dt.strftime('%m/%d/%Y')
         return filtered[['date', 'time', 'event']].to_dict('records')
     except Exception as e:
         print("Economic calendar error:", e)
@@ -373,7 +375,7 @@ def main():
         }
 
     snapshot = {
-        "built_at": datetime.utcnow().isoformat() + "Z",
+        "built_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "groups": groups_data,
         "column_ranges": column_ranges,
     }
